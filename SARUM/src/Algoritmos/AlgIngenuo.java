@@ -32,7 +32,6 @@ public class AlgIngenuo {
     /**
      * Crea un objeto de tipo Algoritmo ingenuo que realiza los calculos para hallar la solucion
      * @param fileParadas
-     * @param fileRutas
      */
     public AlgIngenuo(SarumParadas fileParadas){
         this.fileParadas=fileParadas;
