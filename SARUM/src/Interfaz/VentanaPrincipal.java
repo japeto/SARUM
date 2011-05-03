@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.UIManager;
 import de.muntjak.tinylookandfeel.*;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.util.Vector;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -19,7 +23,8 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
  * @author  Miguel Mondragon 
  * @since  1.0
  */
-public class VentanaPrincipal extends javax.swing.JFrame {  
+public class VentanaPrincipal extends javax.swing.JFrame {
+    private String salidaingenuo="";
     /** 
      * Crea una nueva ventana principal y establece su apariencia
      *
@@ -418,7 +423,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuitemAcercaActionPerformed
 
     private void btAlgIngenuoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlgIngenuoActionPerformed
-        new AlgIngenuo(objCargarArchivo.getFileParadas()).calcularIngenuo(origendestino,objCargarArchivo.getFileRutas().getDestinosRuta());
+        this.salidaingenuo= new AlgIngenuo(objCargarArchivo.getFileParadas()).calcularIngenuo(origendestino,objCargarArchivo.getFileRutas().getDestinosRuta());
         this.mnuitemComprobar.setEnabled(true);
         this.btAlgComprobador.setEnabled(true);
         this.mnuItemGuardar.setEnabled(true);
@@ -445,7 +450,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btAbrir1ActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        // TODO add your handling code here:
+           try{
+               JFileChooser fileChooser = new JFileChooser();
+               int seleccion = fileChooser.showSaveDialog(this);
+                    fileChooser.setCurrentDirectory(new  java.io.File("."));
+                    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            if (seleccion == JFileChooser.APPROVE_OPTION){
+                DataOutputStream out=new DataOutputStream(new FileOutputStream(fileChooser.getSelectedFile()+".txt"));
+                out.writeUTF(salidaingenuo);
+                vntInfo.informararchivo3(salidaingenuo);
+                System.out.println(this.salidaingenuo);
+            }
+        }catch(Exception ioex){
+            System.err.println("Ha ocurrido un problema al guardar el archivo: "+ioex);
+            JOptionPane.showMessageDialog(this,"Ha ocurrido un problema al cargar el archivo \n");
+        }
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void mnuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItemGuardarActionPerformed
@@ -458,9 +477,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             int seleccion = fileChooser.showOpenDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION){
                 origendestino = objCargarArchivo.cargarProblema(fileChooser.getSelectedFile());
-                for(int a=0;a<origendestino.size();a++){
+                /*for(int a=0;a<origendestino.size();a++){
                     System.out.print("TEST: "+origendestino.get(a)[0]+" -> "+origendestino.get(a)[1]);
-                }
+                }*/
                 vntInfo.informararchivo2(origendestino);
                 this.mnuitemIngenuo.setEnabled(true);
                 this.btAlgIngenuo.setEnabled(true);

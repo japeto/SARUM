@@ -174,7 +174,9 @@ public class VentanaInfo extends javax.swing.JDialog {
         
         txtArchivoProblema.setText(archivo);
     }
-    
+    void informararchivo3(String salidaingenuo) {
+        txtArchivoSolucion.setText(salidaingenuo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane editorVentana;
     private javax.swing.JScrollPane jScrollPane1;

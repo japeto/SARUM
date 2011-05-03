@@ -61,10 +61,12 @@ public class SarumRutas {
                //System.out.print(":) "+destinoRuta+" : "+listaRutas.get(numeroRutas).getListParejas().size()+"\n");
                if(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).x>=0 && destinoRuta<listaRutas.get(numeroRutas).getListParejas().size()-1){
                    //System.out.print(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+" , "+listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).x+" , "+listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).y+" , "+listaRutas.get(numeroRutas).getNombreRuta()+"\n");
-                   salida.add(new Camino(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).x+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).y+"",listaRutas.get(numeroRutas).getNombreRuta()));
+                    salida.add(new Camino(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).x+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).y+"",listaRutas.get(numeroRutas).getNombreRuta(),false));
+                    salida.add(new Camino(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).y+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta+1).x+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+"",listaRutas.get(numeroRutas).getNombreRuta(),false));
                }else if (listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).x > 0 && destinoRuta == listaRutas.get(numeroRutas).getListParejas().size()-1) {
                    //System.out.print(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+" , "+(-1)+" , "+(-1)+" , "+listaRutas.get(numeroRutas).getNombreRuta()+"\n");
-                   salida.add(new Camino(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+"","-1","-1",listaRutas.get(numeroRutas).getNombreRuta()));
+                   salida.add(new Camino(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta-1).x*(-1)+"",listaRutas.get(numeroRutas).getListParejas().get(destinoRuta-1).y+"",listaRutas.get(numeroRutas).getNombreRuta(),false));
+                   //salida.add(new Camino(listaRutas.get(numeroRutas).getListParejas().get(destinoRuta).y+"","-1","-1",listaRutas.get(numeroRutas).getNombreRuta(),false));
                }
            }
         }

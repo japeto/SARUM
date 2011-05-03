@@ -73,6 +73,31 @@ public class SarumParadas {
         }
         return new Point(100+tmp.x,100+tmp.y);
     }
+    /**
+     * Obtiene una parada dado su numero de indice
+     * @param numero
+     * @return Parada
+     * @see Parada
+     * @see Point
+     */
+    public Parada getParada(int numero){
+        Parada prdtmp=null;
+        for(int i=0;i<listaParadas.size();i++){
+           Parada prd=listaParadas.get(i);
+                if(prd.getNParada()==numero){
+                    prdtmp=prd;
+                    break;
+                }
+        }
+        return prdtmp;
+    }
+    /**
+     * Obtiene una parada dada su ubicacion como un punto
+     * @param pnt
+     * @return Parada
+     * @see Parada
+     * @see Point
+     */
     public Parada getParada(Point pnt){
         Parada prdtmp=null;
         for(int i=0;i<listaParadas.size();i++){
@@ -122,5 +147,4 @@ public class SarumParadas {
         }
         return prdtmp;
     }
-
 }

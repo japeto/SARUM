@@ -15,8 +15,9 @@ public class Camino {
     String tiempoRecorrido;
     String Destino;
     String nombreRuta;
+    boolean visitado;
 
-    public Camino(String Origen,String tiempo,String Destino, String nombreRuta){
+    public Camino(String Origen,String tiempo,String Destino, String nombreRuta,boolean visitado){
         this.Origen=Origen;
         this.tiempoRecorrido=tiempo;
         this.Destino=Destino;
@@ -54,8 +55,16 @@ public class Camino {
     public String getNombreRuta() {
         return nombreRuta;
     }
+
+    public void setVisitado(boolean visitado) {
+        this.visitado = visitado;
+    }
+
+    public boolean isVisitado() {
+        return visitado;
+    }
     @Override
     public String toString() {
-        return "Camino{" + "Origen=" + Origen + " tiempoRecorrido=" + tiempoRecorrido + " Destino=" + Destino + '}';
+        return Origen+"#"+nombreRuta+"#"+Destino+"\n";//"Camino{Ruta=" +nombreRuta+ " Origen=" + Origen + " tiempoRecorrido=" + tiempoRecorrido + " Destino=" + Destino + '}';
     }
 }
